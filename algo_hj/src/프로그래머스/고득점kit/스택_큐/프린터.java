@@ -6,6 +6,7 @@ public class 프린터 {
 
 	public int solution(int[] priorities, int location) {
 		int answer = 1;
+		
 		PriorityQueue<Integer> queue = new PriorityQueue<>(Comparator.reverseOrder()); // 내림차순으로 큐 작성
 		for (int i : priorities) {
 			queue.add(i);
