@@ -11,6 +11,7 @@ public class K번째수 {
         for(int i = 0; i < commands.length; i++) {
             
             int[] temp = new int[commands[i].length];
+            
             int _i = commands[i][0];
             int j = commands[i][1];
             int k = commands[i][2];    
@@ -18,10 +19,11 @@ public class K번째수 {
             temp = Arrays.copyOfRange(array, _i-1, j);
             Arrays.sort(temp);
 //            System.out.println(Arrays.toString(temp) + " temp입니다.");
-            answer[i] = temp[commands[i][2]-1];
+            answer[i] = temp[k-1];
 //            System.out.println(Arrays.toString(answer) + " answer입니다.");
             
         }
+        
         
         return answer;
     }
