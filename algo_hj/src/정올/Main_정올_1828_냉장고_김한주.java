@@ -21,7 +21,7 @@ public class Main_정올_1828_냉장고_김한주 {
 	}
 
 	@Override
-	public int compareTo(Temperatures o) {
+	public int compareTo(Temperatures o) { // 온도가 낮은순으로 정렬
 		int diff = this.max - o.max;
 		return diff != 0 ? diff : this.min- o.min;
 	}
