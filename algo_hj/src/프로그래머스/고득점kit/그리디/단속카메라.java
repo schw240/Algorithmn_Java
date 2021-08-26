@@ -14,7 +14,7 @@ public class 단속카메라 {
 		int answer = 0;
 		// 나가는 지점순으로 정렬
 		Arrays.sort(routes, new Comparator<int[]>() {
-
+//			(o1, o2) -> {return o1[1] - o2[1]}
 			@Override
 			public int compare(int[] o1, int[] o2) {
 				// TODO Auto-generated method stub
@@ -22,7 +22,7 @@ public class 단속카메라 {
 			}
 			
 		});
-//		System.out.println(Arrays.deepToString(routes)); // 확인
+		System.out.println(Arrays.deepToString(routes)); // 확인
 		
 		// 최대한 겹치는 위치 찾기
 		// 일단 첫번쨰 카메라는 배치해야함
