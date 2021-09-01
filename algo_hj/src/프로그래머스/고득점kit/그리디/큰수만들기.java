@@ -13,13 +13,13 @@ public class 큰수만들기 {
 			for(int j = idx; j <= k + i; j++) { // 다음 쿤 수 인덱스부터 만앞으로 이어붙여야할 문자 길이 -1
 				if(max < number.charAt(j) - '0') {
 					max = number.charAt(j) - '0';
-					System.out.println("현재 j: " + j);
+//					System.out.println("현재 j: " + j);
 					idx = j + 1;
-					System.out.println("중간 max값: " + max);
+//					System.out.println("중간 max값: " + max);
 				}
 			}
 			sb.append(max);
-			System.out.println("한바퀴 돌았을 때 max: " + max);
+//			System.out.println("한바퀴 돌았을 때 max: " + max);
 		}
 		
 		return sb.toString();

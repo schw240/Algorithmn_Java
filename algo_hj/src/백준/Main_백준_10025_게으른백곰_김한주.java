@@ -47,7 +47,7 @@ public class Main_백준_10025_게으른백곰_김한주 {
 		// 앨버트가 택한 최적 위치로부터 K만큼 떨어진 거리내에 있는 얼음들의 최대합 출력
 		System.out.println(max);
 		
-		
+		// 1 2 7 15
 	} // end of main
 
 } // end of class

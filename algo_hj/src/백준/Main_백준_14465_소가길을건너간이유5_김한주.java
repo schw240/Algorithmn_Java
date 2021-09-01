@@ -47,6 +47,8 @@ public class Main_백준_14465_소가길을건너간이유5_김한주 {
 		}
 
 		System.out.println(res);
-		
+		// 1 2 3 4 5 6 7 8 9 10
+		// x x     x       x  x
+		//           3 2 1 2  3
 	} // end of main
 } // end of class
