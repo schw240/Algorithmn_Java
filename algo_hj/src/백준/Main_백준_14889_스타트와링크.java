@@ -33,12 +33,12 @@ public class Main_백준_14889_스타트와링크 {
 //			System.out.println(Arrays.toString(map[i]));
 //		} // 확인
 		
+		ans = Integer.MAX_VALUE;
 		
 		// N명이 모이고 N/2 명씩 나누어서 축구 팀 정하기
 		dfs(0,0);
 		
 		// 스타트팀과 링크팀의 능력치의 차이의 최소값 출력하기
-		ans = 99999;
 		
 		
 		
@@ -59,11 +59,13 @@ public class Main_백준_14889_스타트와링크 {
 				
 				// 1,2    3,4팀이면
 				// S(1,2) + S(2,1) ,     S(3,4) + S(4,3)
-				for(int j = 0; j < N; j++) {
+				for(int j = i+1; j < N; j++) {
 					if(visited[i] == true && visited[j] == true) {
-						start += map[i][j] + map[j][i];
+						start += map[i][j];
+						start += map[j][i];
 					} else if(visited[i] == false && visited[j] == false){
-						link += map[i][j] + map[j][i];
+						link += map[i][j];
+						link += map[j][i];
 					}
 				}
 			}
@@ -81,6 +83,7 @@ public class Main_백준_14889_스타트와링크 {
 				System.exit(0);
 			}
 			
+//			System.out.println(tmp);
 			ans = Math.min(tmp, ans);
 			
 			return;
