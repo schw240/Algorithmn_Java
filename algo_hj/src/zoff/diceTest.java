@@ -22,6 +22,7 @@ public class diceTest {
 	static int totalCnt;
 	
 	public static void main(String[] args) throws Exception {
+	}
 //		Scanner sc = new Scanner(System.in);
 //		N = sc.nextInt(); // 주사위 던진 횟수
 //		numbers = new int[N];
@@ -53,146 +54,269 @@ public class diceTest {
 //		
 //		System.out.println("경우의 수: " + totalCnt);
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		N = Integer.parseInt(br.readLine());
-		adjMatrix = new boolean[N][N];
-		int C = Integer.parseInt(br.readLine()); // 간선 개수
-		for(int i = 0; i < C; i++) {
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			int from = Integer.parseInt(st.nextToken());
-			int to = Integer.parseInt(st.nextToken());
-			adjMatrix[to][from] = adjMatrix[from][to] = true;
-		}
-		
-		bfs();
-		
-		boolean[] visited = new boolean[N];
-		visited[0] = true;
-		dfs(0, visited);
-		
-	} // end of main
+//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//		N = Integer.parseInt(br.readLine());
+//		adjMatrix = new boolean[N][N];
+//		int C = Integer.parseInt(br.readLine()); // 간선 개수
+//		for(int i = 0; i < C; i++) {
+//			StringTokenizer st = new StringTokenizer(br.readLine());
+//			int from = Integer.parseInt(st.nextToken());
+//			int to = Integer.parseInt(st.nextToken());
+//			adjMatrix[to][from] = adjMatrix[from][to] = true;
+//		}
+//		
+//		bfs();
+//		
+//		boolean[] visited = new boolean[N];
+//		visited[0] = true;
+//		dfs(0, visited);
+//		
+//	} // end of main
+//	
+//	private static void bfs() {
+//		
+//		Queue<Integer> q = new LinkedList<>();
+//		boolean[] visited = new boolean[N];
+//		
+//		q.offer(0);
+//		visited[0] = true;
+//		
+//		while(q.size() > 0) {
+//			int cur = q.poll();
+//			
+//			System.out.println((char)(cur + 65));
+//		
+//			for(int i = 0; i < N; i++) {
+//				if(!visited[i] // 미방문 
+//						&& adjMatrix[cur][i]) { // 인접행렬
+//					q.offer(i);
+//					visited[i] = true;
+//				}
+//			}
+//		}
+//		
+//	}
+//	
+//	private static void dfs(int cur, boolean[] visited) {
+//		System.out.println((char)(cur + 65));
+//		
+//		for(int i = 0; i < N; i++) {
+//			if(!visited[i] && adjMatrix[cur][i]) {
+//				
+//				visited[i] = true;
+//				dfs(i, visited);
+//			}
+//		}
+//		
+//	}
 	
-	private static void bfs() {
-		
-		Queue<Integer> q = new LinkedList<>();
-		boolean[] visited = new boolean[N];
-		
-		q.offer(0);
-		visited[0] = true;
-		
-		while(q.size() > 0) {
-			int cur = q.poll();
-			
-			System.out.println((char)(cur + 65));
-		
-			for(int i = 0; i < N; i++) {
-				if(!visited[i] // 미방문 
-						&& adjMatrix[cur][i]) { // 인접행렬
-					q.offer(i);
-					visited[i] = true;
-				}
-			}
-		}
-		
-	}
 	
-	private static void dfs(int cur, boolean[] visited) {
-		System.out.println((char)(cur + 65));
-		
-		for(int i = 0; i < N; i++) {
-			if(!visited[i] && adjMatrix[cur][i]) {
-				
-				visited[i] = true;
-				dfs(i, visited);
-			}
-		}
-		
-	}
+// 중복순열, 순열, 중복조합, 조합
+//	private static void dice1(int cnt) {
+//		if(cnt == N) {
+//			totalCnt++;
+//			System.out.println(Arrays.toString(numbers));
+//			return;
+//		}
+//		
+//		for(int i = 1; i <= 6; i++) {
+//			numbers[cnt] = i;
+//			dice1(cnt+1);
+//		}
+//	}
+//	
+//	private static void dice2(int cnt) {
+//		
+//		if(cnt == N) {
+//			totalCnt++;
+//			System.out.println(Arrays.toString(numbers));
+//			return;
+//		}
+//		
+//		for(int i = 1; i <= 6; i++) {
+//			// 중복체크
+//			if(isSelected[i]) continue;
+//			numbers[cnt] = i;
+//			isSelected[i] = true;
+//			
+//			dice2(cnt+1);
+//			isSelected[i] = false;
+//		}
+//	}
+//	
+//	private static void dice3(int cnt, int start) {
+//		
+//		if(cnt == N) {
+//			totalCnt++;
+//			System.out.println(Arrays.toString(numbers));
+//			return;
+//		}
+//		
+//		for(int i = start; i <= 6; i++) {
+//			numbers[cnt] = i;
+//			dice3(cnt+1, i); // 현재 선택한 수부터 처리
+//		}
+//	}
+//	
+//	private static void dice4(int cnt, int start) {
+//		
+//		if(cnt == N) {
+//			totalCnt++;
+//			System.out.println(Arrays.toString(numbers));
+//			return;
+//		}
+//		
+//		for(int i = start; i <= 6; i++) {
+//			numbers[cnt] = i;
+//			dice4(cnt+1, i+1);
+//		}
+//	}
+//	
+//	private static void generateSubset(int cnt) {
+//		
+//		if(cnt == N) {
+//			//부분집합완성
+//			totalCnt++;
+//			for(int i = 0; i < N; i++) {
+//				System.out.println((isSelected[i] ? input[i]:'X') + " ");
+//			}
+//			
+//			return;
+//		}
+//		
+//		// 현재 원소를 부분집합에 넣기
+//		isSelected[cnt] = true;
+//		generateSubset(cnt + 1);
+//		// 현재 원소를 부분집합에 넣지 않기
+//		isSelected[cnt] = false;
+//		generateSubset(cnt + 1);
+//	}
+
 	
 	
-	private static void dice1(int cnt) {
-		if(cnt == N) {
-			totalCnt++;
-			System.out.println(Arrays.toString(numbers));
-			return;
-		}
-		
-		for(int i = 1; i <= 6; i++) {
-			numbers[cnt] = i;
-			dice1(cnt+1);
-		}
-	}
+// 다익스트라
+//public static void main(String[] args) {
+//	Scanner sc = new Scanner(System.in);
+//
+//	int N = sc.nextInt();
+//	int M = sc.nextInt();
+//
+//	int[][] arr = new int[N+1][N+1];
+//	for(int i = 1; i < N+1; i++) {
+//		Arrays.fill(arr[i], -1); // 가중치 0이 있을수도 있으니 -1로 초기화 
+//	}
+//
+//	for(int i = 0; i < M; i++) {
+//		int a = sc.nextInt();
+//		int d = sc.nextInt();
+//		int c = sc.nextInt();
+//
+//		// 시작 정점과 도착 정점이 같은데 비용이 다른 값이 들어올 수 있기 때문에 예외 처리 
+//		if(arr[a][d] == -1) 
+//			arr[a][d] = c;
+//		else if(arr[a][d] > c) 
+//			arr[a][d] = c;
+//	}
+//
+//	int start = sc.nextInt();
+//	int end = sc.nextInt();
+//
+//	boolean[] check = new boolean[N+1]; // 정점이 집합 S에 속하는지 아닌지를 판별할 배열 
+//
+//	int[] distance = new int[N+1]; // 최단 거리를 담을 배열 
+//	Arrays.fill(distance, Integer.MAX_VALUE-1); // 무한대로 초기화 
+//
+//	distance[start] = 0;
+//
+//	for(int i = 0; i < N-1; i++) { // 시작점을 넣고 시작하기 때문에 N-1만큼만 반복 
+//		int min = Integer.MAX_VALUE;
+//		int index = -1;
+//
+//		for(int j = 1; j < N+1; j++) { // 집합 S에 속하지 않는 가장 최단 거리를 갖는 정점 선택 
+//			if(!check[j] && distance[j] < min) {
+//				min = distance[j]; // 최단 거리 
+//				index = j; // 최단 거리를 갖는 정점의 index 
+//			}
+//		}
+//
+//		check[index] = true;
+//
+//		// S에 속하지 않는다면 더 작은 값을 갖는 거리로 distance값 갱신 
+//		for (int j = 1; j < N+1; j++) { 
+//			if (!check[j] && arr[index][j] != -1 && distance[index] + arr[index][j] < distance[j]) { // 간선이 연결되지 않은 -1의 경우 역시 제외해야함 
+//				distance[j] = distance[index] + arr[index][j];
+//			}
+//		}
+//	}
+//
+//	System.out.println(distance[end]); // 도착점까지의 최단 거리 출력 
+//}
 	
-	private static void dice2(int cnt) {
-		
-		if(cnt == N) {
-			totalCnt++;
-			System.out.println(Arrays.toString(numbers));
-			return;
-		}
-		
-		for(int i = 1; i <= 6; i++) {
-			// 중복체크
-			if(isSelected[i]) continue;
-			numbers[cnt] = i;
-			isSelected[i] = true;
-			
-			dice2(cnt+1);
-			isSelected[i] = false;
-		}
-	}
-	
-	private static void dice3(int cnt, int start) {
-		
-		if(cnt == N) {
-			totalCnt++;
-			System.out.println(Arrays.toString(numbers));
-			return;
-		}
-		
-		for(int i = start; i <= 6; i++) {
-			numbers[cnt] = i;
-			dice3(cnt+1, i); // 현재 선택한 수부터 처리
-		}
-	}
-	
-	private static void dice4(int cnt, int start) {
-		
-		if(cnt == N) {
-			totalCnt++;
-			System.out.println(Arrays.toString(numbers));
-			return;
-		}
-		
-		for(int i = start; i <= 6; i++) {
-			numbers[cnt] = i;
-			dice4(cnt+1, i+1);
-		}
-	}
-	
-	private static void generateSubset(int cnt) {
-		
-		if(cnt == N) {
-			//부분집합완성
-			totalCnt++;
-			for(int i = 0; i < N; i++) {
-				System.out.println((isSelected[i] ? input[i]:'X') + " ");
-			}
-			
-			return;
-		}
-		
-		// 현재 원소를 부분집합에 넣기
-		isSelected[cnt] = true;
-		generateSubset(cnt + 1);
-		// 현재 원소를 부분집합에 넣지 않기
-		isSelected[cnt] = false;
-		generateSubset(cnt + 1);
-	}
-	
-	private static void dijkstra() {
-		
-	}
+// 프림	
+//public class Main_bj_1197_최소스패닝트리 {
+//	static class Info implements Comparable<Info>{
+//		int idx;
+//		long val;
+//		public Info(int idx, long val) {
+//			this.idx = idx;
+//			this.val = val;
+//		}
+//		@Override
+//		public int compareTo(Info o) {		
+//			return Long.compare(this.val, o.val);
+//		}
+//	}
+//	public static void main(String[] args) throws Exception{
+//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//
+//		String s = br.readLine();
+//		StringTokenizer st = new StringTokenizer(s);
+//		int node = Integer.parseInt(st.nextToken());
+//		int edge = Integer.parseInt(st.nextToken());
+//		boolean visit[] = new boolean[node+1];
+//		List<Info> li[];
+//		li = new List[node+1];
+//		for(int i=1;i<=node;i++)
+//			li[i] = new ArrayList<>();
+//		
+//		for(int i=0;i<edge;i++) {
+//			String str = br.readLine();
+//			StringTokenizer st2 = new StringTokenizer(str);
+//			int start = Integer.parseInt(st2.nextToken());
+//			int target = Integer.parseInt(st2.nextToken());
+//			long val = Integer.parseInt(st2.nextToken());
+//			li[start].add(new Info(target,val));
+//			li[target].add(new Info(start,val));
+//		}
+//		long result=0;
+//		PriorityQueue<Info> pq = new PriorityQueue<>();
+//		Deque<Integer> dq = new ArrayDeque<>(); 
+//		dq.offer(1);
+//		while(!dq.isEmpty()) {
+//			int cidx = dq.poll();
+//			visit[cidx]=true;
+//			for(int i=0;i<li[cidx].size();i++) {
+//				int next = li[cidx].get(i).idx;
+//				long nv = li[cidx].get(i).val;
+//				if(!visit[next]) {
+//					pq.offer(new Info(next,nv));
+//				}
+//			}
+//			while(!pq.isEmpty()) {
+//				int next = pq.peek().idx;
+//				long nv = pq.peek().val;
+//				pq.poll();
+//				if(!visit[next]) {
+//					visit[next]=true;
+//					dq.add(next);
+//					result+=nv;
+//					break;
+//				}
+//			}		
+//		}
+//		System.out.println(result);
+//	}
+//}
 	
 	
 	
@@ -282,6 +406,112 @@ public class diceTest {
 //			System.out.println();
 //		}
 //	}
+	
+	
+// 젤다
+//	public class Main_백준_4485_녹색옷입은애가젤다지 {
+//		
+//		private static int N, tc;
+//		static int[][] map;
+//		static int[][] rupy;
+//		static int[] dr = {0,0,1,-1};
+//		static int[] dc = {1,-1,0,0};
+//		
+//		
+//		static class Pos {
+//			int x;
+//			int y;
+//			
+//			Pos(int x, int y) {
+//				this.x = x;
+//				this.y = y;
+//			}
+//		}
+//		
+//		public static void main(String[] args) throws Exception {
+//		
+//			
+//			// 제일 오른쪽 아래칸인 N-1, N-1까지 이동하는데
+//			// 잃는 금액을 최소로 하여 동굴 건너편까지 이동하도록할때
+//			// 잃는 최소금액 출력
+//			
+//			
+//			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//			tc = 1;
+//			while (true) {
+//				// 동굴의 크기 정수 N
+//				N = Integer.parseInt(br.readLine());
+//				
+//				if(N == 0) {
+//					break;
+//				}
+//				
+//				map = new int[N][N];
+//				rupy = new int[N][N];
+//				// 각 칸에있는 도둑루피의 크기가 공백으로 구분되어 주어짐
+//				// 도둑루피의 크기가 k이면 이 칸을 지나면 k 루피를 잃난드난 의미
+//				for(int i = 0; i < N; i++) {
+//					String s = br.readLine();
+//					for(int j = 0, index = 0; j < N; j++, index+=2) {
+//						map[i][j] = s.charAt(index) - '0';
+//						rupy[i][j] = Integer.MAX_VALUE;
+//					}
+//				}
+//				
+////				System.out.println(N);
+////				for(int i = 0; i < N; i++) {
+////					System.out.println(Arrays.toString(map[i]));
+////				} // 확인
+//				
+//				rupy[0][0] = map[0][0];
+//				bfs();
+//				
+//				
+//				
+//				System.out.println("Problem " + tc + ": " + rupy[N-1][N-1]);
+//				tc++;
+//			} // end of while
+//			
+//			
+//		} // end of main
+//
+//		private static void bfs() {
+//			// TODO Auto-generated method stub
+//			Queue<Pos> q = new LinkedList<>();
+//			q.add(new Pos(0,0));
+//			while(q.size() > 0) {
+//				Pos p = q.poll();
+//				int r = p.x;
+//				int c = p.y;
+//				
+//				for(int i = 0; i < 4; i++) {
+//					
+////					for(int k = 0; k < N; k++) {
+////						System.out.println(Arrays.toString(rupy[k]));
+////					} // 중간 루피 확인용
+//					
+//					int nr = r + dr[i];
+//					int nc = c + dc[i];
+//					
+//					if(nr < 0 || nc < 0 || nr >= N || nc >= N) continue; // 범위를 벗어나면 넘어가기
+//					
+//					if(rupy[nr][nc] <= rupy[r][c] + map[nr][nc]) continue; // 최단경로 아닌경우 넘어가기
+//					
+//					rupy[nr][nc] = rupy[r][c] + map[nr][nc];
+//					q.add(new Pos(nr, nc));
+//					
+//				}
+//				
+//			} // end of while
+//			
+//			
+//		} // end of bfs
+//		
+//		
+//		
+//	} // end of class
+
+	
 	
 //	
 //	public class 토마토 {
