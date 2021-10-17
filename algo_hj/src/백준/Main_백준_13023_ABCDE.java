@@ -17,14 +17,12 @@ public class Main_백준_13023_ABCDE {
 	public static void main(String[] args) throws Exception {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = null;
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		
-		st = new StringTokenizer(br.readLine(), " ");
-		N = Integer.parseInt(br.readLine());
-		M = Integer.parseInt(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
 		
 		list = new ArrayList[N];
-		visited = new boolean[N];
 		
 		for(int i = 0; i < N; i++) {
 			list[i] = new ArrayList<Integer>();
@@ -38,22 +36,14 @@ public class Main_백준_13023_ABCDE {
 			list[b].add(a);
 		}
 		
-		
-		
+
 		for(int i = 0; i < N; i++) {
-			flag = false;
-			dfs(i, 0);
-			
-			if(flag) {
-				System.out.println(1);
-				return;
-			}
+			// 각 연결리스트 정점 숞회
+			visited = new boolean[N];
+			dfs(0, i);
 		}
 		
 		System.out.println(0);
-		
-		
-		
 		
 		
 		
@@ -61,20 +51,30 @@ public class Main_백준_13023_ABCDE {
 	
 	
 	private static void dfs(int cnt, int start) {
+		if(cnt == 4) {
+			
+			System.out.println(1);
+			System.exit(0);
+		}
 		
-		if(cnt == 5) {
-			flag = true;
-		} else {
-			for(int i = 0; i < list[start].size(); i++) {
-				if(!visited[list[start].get(i)]) {
-					visited[start] = true;
-					dfs(cnt + 1, list[start].get(i));
-					if(flag) return;
-					visited[start] = false;
-				}
+		visited[start] = true;
+		for(int i = 0; i < list[start].size(); i++) {
+			int tmp = list[start].get(i);
+			if(!visited[tmp]) {
+				visited[tmp] = true;
+				dfs(cnt + 1, tmp);
+				visited[tmp] = false;
 			}
 		}
+		
 		
 	} // end of dfs
 	
 } // end of class
+
+
+//5 4
+//0 1
+//1 2
+//2 3
+//3 4
